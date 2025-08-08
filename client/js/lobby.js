@@ -197,10 +197,10 @@ function showRoomWaitingArea(roomData) {
 
     // 只有房间创建者才能点击“开始游戏”按钮
     const loggedInUsername = localStorage.getItem('username');
-    const isCreator = roomData.playerNames && roomData.playerNames[0] === loggedInUsername;
+    const isCreator = roomData.creatorUsername === loggedInUsername;
     document.getElementById('startGameBtn').disabled = !isCreator;
 
-    document.getElementById('roomWaitingArea').style.display = 'flex'; // 显示模态框
+    document.getElementById('roomWaitingArea').style.display = 'flex';
 }
 
 
@@ -250,7 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.target === roomModal) {
             roomModal.style.display = 'none';
         }
-        // 房间等待区模态框不应该通过点击外部关闭，必须通过“离开房间”按钮
     });
 
     // 确认创建房间按钮事件

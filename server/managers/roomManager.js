@@ -13,7 +13,7 @@ const ROOM_STATUS = {
 /**
  * GameRoom 类：表示一个游戏房间的实例
  */
-class GameRoom {
+class Room {
     constructor(id, name, creatorSocketId, creatorUser) {
         this.id = id;
         this.name = name;
@@ -88,13 +88,15 @@ class GameRoom {
      * @returns {object} 房间的公共信息
      */
     getPublicData() {
+        const creatorPlayer = this.players.get(this.creatorSocketId); // 获取创建者玩家对象
         return {
             id: this.id,
             name: this.name,
             maxPlayers: this.maxPlayers,
             currentPlayers: this.players.size,
-            playerNames: Array.from(this.players.values()).map(p => p.username), // 只返回玩家昵称列表
-            status: this.status
+            playerNames: Array.from(this.players.values()).map(p => p.username),
+            status: this.status,
+            creatorUsername: creatorPlayer ? creatorPlayer.username : '未知' 
         };
     }
 
@@ -124,7 +126,7 @@ const getRoomsList = () => {
  */
 const createRoom = (roomName, creatorSocketId, creatorUser) => {
     const roomId = nextRoomId++; // 生成唯一的房间ID
-    const newRoom = new GameRoom(roomId, roomName, creatorSocketId, creatorUser);
+    const newRoom = new Room(roomId, roomName, creatorSocketId, creatorUser);
     rooms.set(roomId, newRoom); // 将新房间添加到全局房间列表
     return newRoom;
 };
@@ -132,7 +134,7 @@ const createRoom = (roomName, creatorSocketId, creatorUser) => {
 /**
  * 根据ID获取房间实例
  * @param {number} roomId - 房间ID
- * @returns {GameRoom|undefined} 房间实例或 undefined
+ * @returns {Room|undefined} 房间实例或 undefined
  */
 const getRoomById = (roomId) => {
     return rooms.get(roomId);
@@ -157,5 +159,5 @@ module.exports = {
     createRoom,
     getRoomById,
     deleteRoom,
-    GameRoom // 导出 GameRoom 类以便在 Socket.IO 逻辑中使用
+    Room 
 };

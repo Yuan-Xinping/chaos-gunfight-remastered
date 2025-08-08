@@ -25,7 +25,6 @@
         <!-- 创建房间模态框 -->
         <div id="roomModal" class="modal" style="display: none;">
             <div class="modal-content">
-                <span class="close-button">&times;</span>
                 <h2>创建新房间</h2>
                 <input type="text" id="newRoomName" placeholder="输入房间名 (例如: 我的第一个房间)" required>
                 <button id="confirmCreateRoomBtn">创建</button>
@@ -36,7 +35,6 @@
         <!-- 房间等待区模态框 -->
         <div id="roomWaitingArea" class="modal" style="display: none;">
             <div class="modal-content">
-                <span class="close-button">&times;</span>
                 <h2 id="currentRoomName"></h2>
                 <p>房间ID: <span id="currentRoomId"></span></p>
                 <h3>房间成员 (<span id="currentPlayersCount">0</span>/<span id="maxPlayersCount">4</span>):</h3>
@@ -48,6 +46,7 @@
                 <p id="roomWaitingMessage" class="message"></p>
             </div>
         </div>
+
     </div>
 
     <script src="js/lobby.js"></script>
