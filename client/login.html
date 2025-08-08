@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 混乱大枪战</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container auth-form">
+        <h1>用户登录</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="identifier">账号ID或邮箱:</label>
+                <input type="text" id="identifier" placeholder="请输入您的账号ID或注册邮箱" required>
+            </div>
+            <div class="form-group">
+                <label for="password">密码:</label>
+                <input type="password" id="password" placeholder="请输入密码" required>
+            </div>
+            <button type="submit">登录</button>
+            <p id="loginMessage" class="message"></p>
+        </form>
+        <p><a href="register.html">没有账号？立即注册</a></p>
+        <p><a href="reset_password.html">忘记密码？</a></p>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+</html>

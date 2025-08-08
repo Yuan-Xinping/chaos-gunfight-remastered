@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大厅 - 混乱大枪战</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script> <!-- 引入 Socket.IO 客户端库 -->
+</head>
+<body>
+    <div class="container lobby-page">
+        <h1>混乱大枪战：大厅</h1>
+        <p>欢迎，<span id="loggedInUsername"></span> (ID: <span id="loggedInAccountId"></span>)!</p>
+        <button id="logoutBtn">退出登录</button>
+
+        <hr>
+
+        <h2>房间列表</h2>
+        <button id="createRoomBtn">创建房间</button>
+        <div id="roomList">
+            <!-- 房间列表将在这里动态加载 -->
+            <p>加载中...</p>
+        </div>
+
+        <!-- 创建房间模态框 -->
+        <div id="roomModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>创建新房间</h2>
+                <input type="text" id="newRoomName" placeholder="输入房间名 (例如: 我的第一个房间)" required>
+                <button id="confirmCreateRoomBtn">创建</button>
+                <p id="roomModalMessage" class="message"></p>
+            </div>
+        </div>
+
+        <!-- 房间等待区模态框 -->
+        <div id="roomWaitingArea" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2 id="currentRoomName"></h2>
+                <p>房间ID: <span id="currentRoomId"></span></p>
+                <h3>房间成员 (<span id="currentPlayersCount">0</span>/<span id="maxPlayersCount">4</span>):</h3>
+                <ul id="roomPlayersList">
+                    <!-- 房间玩家将在这里动态加载 -->
+                </ul>
+                <button id="startGameBtn" disabled>开始游戏</button> <!-- 仅房间创建者可点击 -->
+                <button id="leaveRoomBtn">离开房间</button>
+                <p id="roomWaitingMessage" class="message"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/lobby.js"></script>
+</body>
+</html>
